@@ -1,11 +1,12 @@
 Adventure Land
 
 # V1
+- make a inventory system to carrie items
 - polish the map.py and sort out the names and details of each island.
 - set up the code to enter challenges of each level
 
 # V2
-- make a inventory system to carrie items
+- items and create properties for them
 - setal the basic functions of each challenge
 
 # V3
@@ -15,4 +16,3 @@ Adventure Land
 
 # V4
 - create further levels or story lines
-atributes
