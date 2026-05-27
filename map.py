@@ -1,11 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Apr 28 14:16:38 2026
-
-@author: syed.hussain1
-"""
-
-from tabulate import tabulate
+import tabulate
 import subprocess
 
 class Island:
@@ -21,7 +14,7 @@ class Island:
         return self.name
 
     def view_island(self):
-        return tabulate(self.plot, tablefmt="fancy_grid") + "\n"
+        return tabulate.tabulate(self.plot, tablefmt="fancy_grid") + "\n"
 
 
 class Player:
@@ -92,7 +85,7 @@ def move():
             elif move_choice == "stop":
                 break
             elif move_choice in ["up", "down", "left", "right"]:
-                print("Movement is of bounds!", end=" ")
+                print("You have reached the edge, you canot move forwards.", end=" ")
             else:
                 print("That's not a valid direction!", end=" ")
             subprocess.run("cls", shell=True)
@@ -113,7 +106,7 @@ def move():
             elif move_choice == "stop":
                 break
             elif move_choice in ["up", "down", "left", "right"]:
-                print("Movement is of bounds!", end=" ")
+                print("You have reached the edge, you canot move forwards.", end=" ")
             else:
                 print("That's not a valid direction!", end=" ")
             subprocess.run("cls", shell=True)
@@ -124,11 +117,11 @@ def move():
 def view_map():
     print("- THE MAP")
     if type(steve.map_choice) == list:
-        print(tabulate(steve.map_choice, tablefmt="fancy_grid") + "\n")
+        print(tabulate.tabulate(steve.map_choice, tablefmt="fancy_grid") + "\n")
         print(f"You are at {steve.map_choice[steve.pos[0]][steve.pos[1]]}.\n")
     elif type(steve.map_choice) == Plot:
         print(f"- {steve.map_choice.name.upper()}")
-        print(tabulate(steve.map_choice.plot, tablefmt="fancy_grid") + "\n")
+        print(tabulate.tabulate(steve.map_choice.plot, tablefmt="fancy_grid") + "\n")
         print(f"You are at {steve.map_choice.plot[steve.pos[0]][steve.pos[1]]}.\n")
 
 def explore_island():
@@ -161,7 +154,7 @@ def main():
         menu_choice = input("What would you like to do?\n"
                             + "(move/view map/enter island/quit)\n")        
         if menu_choice == "quit":
-            print("\nGood bye, player...")
+            print("\nGood bye, STEVE...")
             break
         elif menu_choice.startswith("view"):
             subprocess.run("cls", shell=True)
