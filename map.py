@@ -1,52 +1,25 @@
-import tabulate
 import subprocess
-
-class Island:
-    
-    def __init__(self, name, start_pos, plot, description):
-        self.name = name
-        self.start_pos = start_pos
-        self.plot = Plot(self.name, plot, self.start_pos)
-        self.description = description
-
-    
-    def __str__(self):
-        return self.name
-
-    def view_island(self):
-        return tabulate.tabulate(self.plot, tablefmt="fancy_grid") + "\n"
+import tabulate
+# from modules.island import Island
+from modules.plot import Plot, Island
+from modules.player import Player
 
 
-class Player:
-    
-    def __init__(self, name, pos, map_choice):
-        self.name = name
-        self.pos = pos
-        self.map_choice = map_choice
-
-
-class Plot:
-    def __init__(self, name, plot, start_pos):
-        self.name = name
-        self.plot = [[_ for _ in range(int(plot.split("x")[0]))] \
-                     for _ in range(int(plot.split("x")[1]))]
-        self.start_pos = start_pos
-    
-        
-
-base = Island("Main Island (Base)", "0,0", "1x1", "Your home.")
-forests = Island("Enchanted Woodlands", "2,0", "1x3",
+# Defining each island in the main map
+# Island()
+base = Island("Main Island (Base)", "1x1", "0,0", "Your home.")
+forests = Island("Enchanted Woodlands", "1x3", "2,0",
                  "Largely uncharted. Explore at your own risk.")
-caves = Island("Jagged Caverns", "3,0", "4x4", "Litterred with corpses of miners.")
-farms = Island("Crop Meadows", "2,0", "2x3",
+caves = Island("Jagged Caverns", "4x4", "3,0", "Litterred with corpses of miners.")
+farms = Island("Crop Meadows", "2x3", "2,0",
                "Scattered with nourishment, from vegetables & grain to wild rabbits & chickens.")
-fire_world = Island ("Hellscape", "0, 4", "5x1",
+fire_world = Island ("Hellscape", "5x1", "0,4",
                      "None that have ventured are known to return.")
-water_world = Island("Aquatic Abyss", "0,0", "2x1",
+water_world = Island("Aquatic Abyss", "2x1", "0,0",
                      "Try to not get swallowed by the depths.")
-merchant = Island("Merchant's wares", "0,0", "1x1", "Barter for goods.")
-pantheon = Island("Pantheon", "0,0", "1x1", "Draw healing energy from higher powers.")
-spiders = Island("Arachnid Web", "0,0", "2x2", "Tangled in treacherous spider silk.")
+merchant = Island("Merchant's wares", "1x1", "0,0", "Barter for goods.")
+pantheon = Island("Pantheon", "1x1", "0,0", "Draw healing energy from higher powers.")
+spiders = Island("Arachnid Web", "2x2",  "0,0", "Tangled in treacherous spider silk.")
 
 # defining main map
 main_map = Plot("MAIN MAP", "3x3", "1,1")
