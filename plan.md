@@ -1,4 +1,4 @@
-Adventure Land
+Name: Adventure Land
 
 # V1
 - make a inventory system to carrie items
@@ -16,3 +16,12 @@ Adventure Land
 
 # V4
 - create further levels or story lines
+
+Task
+
+# Syed
+- Orgenize code
+
+# Stephen
+- Fill in all paper work
+- Create inventeoy system
