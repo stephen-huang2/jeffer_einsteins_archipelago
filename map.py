@@ -1,7 +1,6 @@
-import subprocess
-import tabulate
-# from modules.island import Island
-from modules.plot import Plot, Island
+# import tabulate
+from modules.clear import clear
+from modules.plot import *
 from modules.player import Player
 
 
@@ -35,113 +34,66 @@ main_map.plot[2][0] = merchant
 main_map.plot[2][1] = pantheon
 main_map.plot[2][2] = spiders
 
-
 # Player starts at main island
 steve = Player("Steve", [int(main_map.start_pos.split(",")[0]),
-                        int(main_map.start_pos.split(",")[1])], main_map.plot)
+                        int(main_map.start_pos.split(",")[1])], main_map)
 
 
-def move():
-    global steve
-    if type(steve.map_choice) == list:
-        while True:
-            move_choice = input("Where would you like to move?\n"
-                                + "(up/down/left/right/stop)\n")
-            if move_choice == "up" and steve.pos[0] > 0:
-                steve.pos[0] -= 1
-            elif move_choice == "down" and steve.pos[0] < len(steve.map_choice)-1:
-                steve.pos[0] += 1
-            elif move_choice == "left" and steve.pos[1] > 0:
-                steve.pos[1] -= 1
-            elif move_choice == "right" and steve.pos[1] < len(steve.map_choice[0])-1:
-                steve.pos[1] += 1
-            elif move_choice == "stop":
-                break
-            elif move_choice in ["up", "down", "left", "right"]:
-                print("You have reached the edge, you canot move forwards.", end=" ")
-            else:
-                print("That's not a valid direction!", end=" ")
-            subprocess.run("cls", shell=True)
-            print(f"You are at {steve.map_choice[steve.pos[0]][steve.pos[1]]}.\n")
-        subprocess.run("cls", shell=True)
-    elif type(steve.map_choice) == Plot:
-        while True:
-            move_choice = input("Where would you like to move?\n"
-                                + "(up/down/left/right/stop)\n")
-            if move_choice == "up" and steve.pos[0] > 0:
-                steve.pos[0] -= 1
-            elif move_choice == "down" and steve.pos[0] < len(steve.map_choice.plot)-1:
-                steve.pos[0] += 1
-            elif move_choice == "left" and steve.pos[1] > 0:
-                steve.pos[1] -= 1
-            elif move_choice == "right" and steve.pos[1] < len(steve.map_choice.plot[0])-1:
-                steve.pos[1] += 1
-            elif move_choice == "stop":
-                break
-            elif move_choice in ["up", "down", "left", "right"]:
-                print("You have reached the edge, you canot move forwards.", end=" ")
-            else:
-                print("That's not a valid direction!", end=" ")
-            subprocess.run("cls", shell=True)
-            print(f"You are at {steve.map_choice.plot[steve.pos[0]][steve.pos[1]]}.\n")
-        subprocess.run("cls", shell=True)
-
-
-def view_map():
+def view_map(player_name: Player):
     print("- THE MAP")
-    if type(steve.map_choice) == list:
-        print(tabulate.tabulate(steve.map_choice, tablefmt="fancy_grid") + "\n")
-        print(f"You are at {steve.map_choice[steve.pos[0]][steve.pos[1]]}.\n")
-    elif type(steve.map_choice) == Plot:
-        print(f"- {steve.map_choice.name.upper()}")
-        print(tabulate.tabulate(steve.map_choice.plot, tablefmt="fancy_grid") + "\n")
-        print(f"You are at {steve.map_choice.plot[steve.pos[0]][steve.pos[1]]}.\n")
+    print(player_name.map_choice.view_plot())
 
-def explore_island():
-    steve.map_choice = main_map.plot[steve.pos[0]][steve.pos[1]].plot
-    steve.pos = [int(steve.map_choice.start_pos.split(",")[0]),
-                int(steve.map_choice.start_pos.split(",")[1])]
+
+def explore_island(player_name: Player):
+    player_name.map_choice = main_map.plot[player_name.pos[0]][player_name.pos[1]]
+    player_name.pos = [int(player_name.map_choice.start_pos.split(",")[0]),
+                int(player_name.map_choice.start_pos.split(",")[1])]
     while True:
         menu_choice = input("What would you like to do?\n"
                             + "(move/view map/return to base)\n")
+        clear()
         if menu_choice.startswith("move"):
-            subprocess.run("cls", shell=True)
-            move()
+            # clear()
+            player_name.move()
         elif menu_choice.startswith("view"):
-            subprocess.run("cls", shell=True)
-            view_map()
+            # clear()
+            view_map(player_name)
         elif menu_choice.startswith("return"):
-            subprocess.run("cls", shell=True)
-            return_to_base()
+            # clear()
+            return_to_base(player_name)
             break
         else:
-            subprocess.run("cls", shell=True)
+            # clear()
             print("That's not a valid choice!\n")
 
-def return_to_base():
-    steve.map_choice = main_map.plot
-    steve.pos = [1,1]
 
-def main():
+def return_to_base(player_name: Player):
+    player_name.map_choice = main_map
+    player_name.pos = [1,1]
+
+
+def explore_main(player_name: Player):
     while True:
         menu_choice = input("What would you like to do?\n"
                             + "(move/view map/enter island/quit)\n")        
         if menu_choice == "quit":
-            print("\nGood bye, STEVE...")
+            print(f"\nGood bye, {player_name.name.upper()}...")
             break
-        elif menu_choice.startswith("view"):
-            subprocess.run("cls", shell=True)
-            view_map()
+        
+        clear()
+        if menu_choice.startswith("view"):
+            # clear()
+            view_map(player_name)
         elif menu_choice.startswith("move"):
-            subprocess.run("cls", shell=True)
-            move()
+            # clear()
+            player_name.move()
         elif menu_choice.startswith("enter"):
-            subprocess.run("cls", shell=True)
-            explore_island()
+            # clear()
+            explore_island(player_name)
         else:
-            subprocess.run("cls", shell=True)
+            # clear()
             print("You cannot do that!\n")
 
-subprocess.run("cls", shell=True)
+clear()
 print("Welcome~")
-main()
+explore_main(steve)
