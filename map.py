@@ -5,7 +5,6 @@ from modules.player import Player
 
 
 # Defining each island in the main map
-# Island()
 base = Island("Main Island (Base)", "1x1", "0,0", "Your home.")
 forests = Island("Enchanted Woodlands", "1x3", "2,0",
                  "Largely uncharted. Explore at your own risk.")
@@ -33,6 +32,7 @@ main_map.plot[1][2] = water_world
 main_map.plot[2][0] = merchant
 main_map.plot[2][1] = pantheon
 main_map.plot[2][2] = spiders
+
 
 # Player starts at main island
 steve = Player("Steve", [int(main_map.start_pos.split(",")[0]),
