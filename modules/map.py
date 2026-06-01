@@ -1,4 +1,3 @@
-# import tabulate
 from modules.clear import clear
 from modules.plot import *
 from modules.player import Player
