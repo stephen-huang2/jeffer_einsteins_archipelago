@@ -1,11 +1,11 @@
 inventory = {}
 
-def add_item(item, qty=1):
+def add_item(item: str, qty=1):
     """Adds or increases an item's quantity in the inventory."""
     inventory[item] = inventory.get(item, 0) + qty
     print(f"Added {qty}x {item}. Current quantity: {inventory[item]}")
 
-def remove_item(item, qty=1):
+def remove_item(item: str, qty=1):
     if item in inventory:
         if inventory[item] > qty:
             inventory[item] -= qty
