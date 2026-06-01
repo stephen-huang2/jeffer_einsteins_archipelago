@@ -1,8 +1,9 @@
 from modules.clear import clear
+from modules.plot import *
 
 class Player:
     
-    def __init__(self, name, pos, map_choice):
+    def __init__(self, name: str, pos: list, map_choice: Plot):
         self.name = name
         self.pos = pos
         self.map_choice = map_choice
