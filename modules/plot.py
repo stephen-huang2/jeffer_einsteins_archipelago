@@ -11,7 +11,8 @@ class Plot:
         return self.name
 
     def view_plot(self):
-        return tabulate.tabulate(self.plot, tablefmt="fancy_grid")
+        print("- THE MAP")
+        print(tabulate.tabulate(self.plot, tablefmt="fancy_grid"))
 
 class Island(Plot):
     def __init__(self, name, plot, start_pos, description: str):

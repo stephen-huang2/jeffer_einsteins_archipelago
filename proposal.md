@@ -8,7 +8,7 @@ A map game with puzzles and riddles, you can solve them to adventure on in the w
 Protagonist: Steve Howard
 Antagonist: Jeffer Einstein
 
-You are going to be playing as Steve Howard. You were captured to an archipelago of dangerous Islands by Jeffer Einstein for human experiments, and you managed to eascape from his lab, now you have to explore around the map, solve puzzles and go through challenges to escape to safety before Jeffer Einstein cathces you and brings you back to the lab.
+You are going to be playing as Steve Howard. You were captured to an archipelago of dangerous Islands by Jeffer Einstein for human experiments, and you managed to escape from his lab, now you have to explore around the map, solve puzzles and go through challenges to escape to safety before Jeffer Einstein cathces you and brings you back to the lab.
 
 # Theme
 Jeffer Einstein's Archipelago is a mystery and survival-themed adventure RPG. The game is set on perilous islands that are full of challenges, riddles, puzzles, and mysteries. While fleeing from the treacherous scientist Jeffer Einstein, players go to many locations. The game creates an interesting and brain-teasing experience by fusing adventure, problem-solving, and exploration.

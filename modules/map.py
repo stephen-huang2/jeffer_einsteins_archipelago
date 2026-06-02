@@ -1,3 +1,4 @@
+# Imports & Global Variables
 from modules.clear import clear
 from modules.plot import *
 from modules.player import Player
@@ -32,43 +33,32 @@ main_map.plot[2][0] = merchant
 main_map.plot[2][1] = pantheon
 main_map.plot[2][2] = spiders
 
-
 # Player starts at main island
 steve = Player("Steve", [int(main_map.start_pos.split(",")[0]),
                         int(main_map.start_pos.split(",")[1])], main_map)
 
 
-def view_map(player_name: Player):
-    print("- THE MAP")
-    print(player_name.map_choice.view_plot())
-
-
 def explore_island(player_name: Player):
+    original_position = (player_name.pos).copy()
+    
     player_name.map_choice = main_map.plot[player_name.pos[0]][player_name.pos[1]]
     player_name.pos = [int(player_name.map_choice.start_pos.split(",")[0]),
                 int(player_name.map_choice.start_pos.split(",")[1])]
     while True:
         menu_choice = input("What would you like to do?\n"
-                            + "(move/view map/return to base)\n")
+                            + "(move/view map/exit island)\n")
         clear()
         if menu_choice.startswith("move"):
-            # clear()
             player_name.move()
         elif menu_choice.startswith("view"):
-            # clear()
-            view_map(player_name)
-        elif menu_choice.startswith("return"):
-            # clear()
-            return_to_base(player_name)
+            player_name.map_choice.view_plot()
+        elif menu_choice.startswith("exit"):
+            player_name.map_choice = main_map
+            player_name.pos = original_position
+            print(f"You have exited the {main_map.plot[player_name.pos[0]][player_name.pos[1]]} successfully!")
             break
         else:
-            # clear()
             print("That's not a valid choice!\n")
-
-
-def return_to_base(player_name: Player):
-    player_name.map_choice = main_map
-    player_name.pos = [1,1]
 
 
 def explore_main(player_name: Player):
@@ -81,18 +71,10 @@ def explore_main(player_name: Player):
         
         clear()
         if menu_choice.startswith("view"):
-            # clear()
-            view_map(player_name)
+            player_name.map_choice.view_plot()
         elif menu_choice.startswith("move"):
-            # clear()
             player_name.move()
         elif menu_choice.startswith("enter"):
-            # clear()
             explore_island(player_name)
         else:
-            # clear()
             print("You cannot do that!\n")
-
-clear()
-print("Welcome~")
-explore_main(steve)
