@@ -14,6 +14,7 @@ class Plot:
         print("- THE MAP")
         print(tabulate.tabulate(self.plot, tablefmt="fancy_grid"))
 
+
 class Island(Plot):
     def __init__(self, name, plot, start_pos, description: str):
         super().__init__(name, plot, start_pos)
