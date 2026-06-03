@@ -4,3 +4,7 @@
 6/1/2026 - Created main.py where the main games is gonna be in.
 6/2/2026 - Create full story line
 6/3/2026 - Create caves map & figure out how to use inventory system for making loot stashes for the player to pick up
+Test Things
+
+
+
