@@ -4,9 +4,12 @@ import tabulate
 
 class Inventory:
     
-    def __init__(self, name, inventory: int = 3):
+    def __init__(self, name: str, inventory: int = 3):
         self.name = name
         self.inventory = [["EMPTY"] for i in range(inventory)]
+
+    def __str__(self):
+        return self.name
 
     def view_inventory(self):
         print("INVENTORY: ")

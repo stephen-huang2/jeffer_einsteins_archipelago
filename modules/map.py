@@ -2,7 +2,7 @@
 from modules.clear import clear
 from modules.plot import *
 from modules.player import Player
-
+from modules.inventory import *
 
 # Defining each island in the main map
 base = Island("Main Island (Base)", "1x1", "0,0", "Your home.")
@@ -32,6 +32,20 @@ main_map.plot[1][2] = water_world
 main_map.plot[2][0] = merchant
 main_map.plot[2][1] = pantheon
 main_map.plot[2][2] = spiders
+
+# asssigning caves coordinates to quests.
+'''
+TODO -> -player can only exit from hanging rope, if player tries before they have rope it tells them they cant go up
+        -make player solve riddle to get a key to open the loot stash
+        -put "Rope" in loot stash
+'''
+caves.plot[0][0] = "Cliff"
+caves.plot[0][1] = "     "
+caves.plot[1][2] = "Dead Body"
+caves.plot[3][1] = Inventory("Loot stash")
+caves.plot[3][3] = "Hanging Rope"
+
+# assigning farm coordinates to quests
 
 # Player starts at main island
 steve = Player("Steve", [int(main_map.start_pos.split(",")[0]),
