@@ -30,5 +30,9 @@ class Player:
             else:
                 print("That's not a valid direction!", end=" ")
             clear()
-            print(f"You are at {self.map_choice.plot[self.pos[0]][self.pos[1]]}.\n")
+            if self.map_choice.plot[self.pos[0]][self.pos[1]] != "":
+                print(f"You are at {self.map_choice.plot[self.pos[0]][self.pos[1]]}.\n")
+            else:
+                print("There's nothing here.")
+
         clear()
