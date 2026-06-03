@@ -5,19 +5,19 @@ from modules.player import Player
 
 
 # Defining each island in the main map
-base = Island("Main Island (Base)", "1x1", "0,0", "Your home.")
-forests = Island("Enchanted Woodlands", "1x3", "2,0",
+base = Island("Main Lab (Spawn)", "1x1", "0,0", "Your home.")
+forests = Island("Einstein's House", "1x3", "2,0",
                  "Largely uncharted. Explore at your own risk.")
 caves = Island("Jagged Caverns", "4x4", "3,0", "Litterred with corpses of miners.")
-farms = Island("Crop Meadows", "2x3", "2,0",
+farms = Island("Deep Caverns", "2x3", "2,0",
                "Scattered with nourishment, from vegetables & grain to wild rabbits & chickens.")
-fire_world = Island ("Hellscape", "5x1", "0,4",
+fire_world = Island ("Aquatc Safehouse", "5x1", "0,4",
                      "None that have ventured are known to return.")
-water_world = Island("Aquatic Abyss", "2x1", "0,0",
+water_world = Island("Shivering Mountains", "2x1", "0,0",
                      "Try to not get swallowed by the depths.")
-merchant = Island("Merchant's wares", "1x1", "0,0", "Barter for goods.")
-pantheon = Island("Pantheon", "1x1", "0,0", "Draw healing energy from higher powers.")
-spiders = Island("Arachnid Web", "2x2",  "0,0", "Tangled in treacherous spider silk.")
+merchant = Island("Eintein's Docks", "1x1", "0,0", "Barter for goods.")
+pantheon = Island("Secondary Lab", "1x1", "0,0", "Draw healing energy from higher powers.")
+spiders = Island("Decayed Forests", "2x2",  "0,0", "Tangled in treacherous spider silk.")
 
 # defining main map
 main_map = Plot("MAIN MAP", "3x3", "1,1")
