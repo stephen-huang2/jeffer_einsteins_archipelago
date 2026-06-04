@@ -48,14 +48,13 @@ caves.plot[3][3] = "Hanging Rope"
 
 base.plot[0][0] = "Lab"
 
+# assigning farm coordinates to quests
 farms.plot[2][0] = "Farm Gates"
 farms.plot[2][1] = "Tool Garage"
 farms.plot[0][1] = " "
 farms.plot[1][1] = "Farm Land"
 farms.plot[0][0] = "Pigsty"
 farms.plot[0][1] = " "
-
-# assigning farm coordinates to quests
 
 # Player starts at main island
 steve = Player("Steve", [int(main_map.start_pos.split(",")[0]),
@@ -66,7 +65,7 @@ def explore_island(player_name: Player):
     original_position = (player_name.pos).copy()
     
     player_name.map_choice = main_map.plot[player_name.pos[0]][player_name.pos[1]]
-    print("INFO:\n" + player_name.map_choice.description, end="\n\n")
+    type_write("INFO:\n" + player_name.map_choice.description + "\n")
     player_name.pos = [int(player_name.map_choice.start_pos.split(",")[0]),
                 int(player_name.map_choice.start_pos.split(",")[1])]
     
@@ -83,12 +82,12 @@ def explore_island(player_name: Player):
                 int(player_name.map_choice.start_pos.split(",")[1])]:
                 player_name.map_choice = main_map
                 player_name.pos = original_position
-                print(f"You have exited the {main_map.plot[player_name.pos[0]][player_name.pos[1]]} successfully!")
+                type_write(f"You have exited the {main_map.plot[player_name.pos[0]][player_name.pos[1]]} successfully!")
                 break
             else:
-                print(f"You need to return to the island entrance first!\n")
+                type_write(f"You need to return to the island entrance first!\n")
         else:
-            print("That's not a valid choice!\n")
+            type_write("That's not a valid choice!\n")
 
 
 def main():
@@ -110,7 +109,7 @@ def main():
         menu_choice = input("What would you like to do?\n"
                             + "(move/view map/enter island/quit)\n")        
         if menu_choice == "quit":
-            print(f"\nGood bye, {player_name.name.upper()}...")
+            type_write(f"\nGood bye, {player_name.name.upper()}...")
             break
         
         clear()
@@ -121,4 +120,4 @@ def main():
         elif menu_choice.startswith("enter"):
             explore_island(player_name)
         else:
-            print("You cannot do that!\n")
+            type_write("You cannot do that!\n")
