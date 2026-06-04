@@ -56,8 +56,10 @@ def explore_island(player_name: Player):
     original_position = (player_name.pos).copy()
     
     player_name.map_choice = main_map.plot[player_name.pos[0]][player_name.pos[1]]
+    print("INFO:\n" + player_name.map_choice.description, end="\n\n")
     player_name.pos = [int(player_name.map_choice.start_pos.split(",")[0]),
                 int(player_name.map_choice.start_pos.split(",")[1])]
+    
     while True:
         menu_choice = input("What would you like to do?\n"
                             + "(move/view map/exit island)\n")
@@ -67,10 +69,14 @@ def explore_island(player_name: Player):
         elif menu_choice.startswith("view"):
             player_name.map_choice.view_plot()
         elif menu_choice.startswith("exit"):
-            player_name.map_choice = main_map
-            player_name.pos = original_position
-            print(f"You have exited the {main_map.plot[player_name.pos[0]][player_name.pos[1]]} successfully!")
-            break
+            if player_name.pos == [int(player_name.map_choice.start_pos.split(",")[0]),
+                int(player_name.map_choice.start_pos.split(",")[1])]:
+                player_name.map_choice = main_map
+                player_name.pos = original_position
+                print(f"You have exited the {main_map.plot[player_name.pos[0]][player_name.pos[1]]} successfully!")
+                break
+            else:
+                print(f"You need to return to the island entrance first!\n")
         else:
             print("That's not a valid choice!\n")
 
