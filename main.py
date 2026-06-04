@@ -6,4 +6,4 @@ from modules.type_write import type_write
 # Building the story
 clear()
 type_write("Welcome~")
-main(steve)
+main()

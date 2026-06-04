@@ -3,6 +3,7 @@ from modules.clear import clear
 from modules.plot import *
 from modules.player import Player
 from modules.inventory import *
+from modules.type_write import type_write
 
 # Defining each island in the main map
 base = Island("Main Island (Base)", "1x1", "0,0", "Your home.")
@@ -81,7 +82,20 @@ def explore_island(player_name: Player):
             print("That's not a valid choice!\n")
 
 
-def main(player_name: Player):
+def main():
+
+    while True:
+        player_name = type_write("Who would you like your player to be?\n(Steve)", userin=True)
+        if player_name.lower().startswith("steve"):
+            player_name = steve
+            break
+        else:
+            clear()
+            type_write("That player doesn't exist!")
+
+    clear()
+
+    type_write("Welcome Steve~")
 
     while True:
         menu_choice = input("What would you like to do?\n"

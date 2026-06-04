@@ -11,4 +11,5 @@ def type_write(text: str, delay: float = 0.05, newline: bool=True, userin: bool=
     if newline:
         print()
     if userin:
-        input()
+        userin = input()
+        return userin
