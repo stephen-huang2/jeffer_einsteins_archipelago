@@ -81,7 +81,8 @@ def explore_island(player_name: Player):
             print("That's not a valid choice!\n")
 
 
-def explore_main(player_name: Player):
+def main(player_name: Player):
+
     while True:
         menu_choice = input("What would you like to do?\n"
                             + "(move/view map/enter island/quit)\n")        

@@ -1,7 +1,7 @@
 import sys
 import time
 
-def type_write(text: str, delay: float = 0.05, newline: bool=True):
+def type_write(text: str, delay: float = 0.05, newline: bool=True, userin: bool=False):
     
     for char in text:
         sys.stdout.write(char)
@@ -10,3 +10,5 @@ def type_write(text: str, delay: float = 0.05, newline: bool=True):
     
     if newline:
         print()
+    if userin:
+        input()
