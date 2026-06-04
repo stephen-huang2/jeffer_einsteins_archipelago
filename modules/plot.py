@@ -1,4 +1,5 @@
 import tabulate
+from modules.type_write import *
 
 class Plot:
     def __init__(self, name: str, plot: str, start_pos: str):
@@ -11,7 +12,7 @@ class Plot:
         return self.name
 
     def view_plot(self):
-        print("- THE MAP")
+        type_write("- THE MAP")
         print(tabulate.tabulate(self.plot, tablefmt="fancy_grid"))
 
 
