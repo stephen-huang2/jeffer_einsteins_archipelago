@@ -6,7 +6,7 @@ from modules.inventory import *
 from modules.type_write import *
 
 # Defining each island in the main map
-base = Island("Main Island (Base)", "1x1", "0,0", "Your home.")
+base = Island("Main Island (Lab)", "1x1", "0,0", "Your home.")
 forests = Island("Enchanted Woodlands", "1x3", "2,0",
                  "Largely uncharted. Explore at your own risk.")
 caves = Island("Jagged Caverns", "4x4", "3,0", "Litterred with corpses of miners.")
@@ -45,6 +45,15 @@ caves.plot[0][1] = "     "
 caves.plot[1][2] = "Dead Body"
 caves.plot[3][1] = Inventory("Loot stash")
 caves.plot[3][3] = "Hanging Rope"
+
+base.plot[0][0] = "Lab"
+
+farms.plot[2][0] = "Farm Gates"
+farms.plot[2][1] = "Tool Garage"
+farms.plot[0][1] = " "
+farms.plot[1][1] = "Farm Land"
+farms.plot[0][0] = "Pigsty"
+farms.plot[0][1] = " "
 
 # assigning farm coordinates to quests
 

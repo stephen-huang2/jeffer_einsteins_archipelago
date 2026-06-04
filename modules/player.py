@@ -29,7 +29,7 @@ class Player:
             elif move_choice in ["up", "down", "left", "right"]:
                 type_write("You have reached the edge of the map.", newline=False)
                 '''
-                TODO make this line stay while showing the player where they are (Beacuse it deletes this line rn after telling player where they are)
+                TODO -> make this line stay while showing the player where they are (Beacuse it deletes this line rn after telling player where they are)
                 '''
             else:
                 type_write("That's not a valid direction!", newline=False)
