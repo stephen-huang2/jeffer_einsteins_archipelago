@@ -3,6 +3,7 @@ from modules.clear import clear
 from modules.plot import *
 from modules.player import Player
 from modules.inventory import *
+from modules.type_write import *
 
 # Defining each island in the main map
 base = Island("Main Island (Base)", "1x1", "0,0", "Your home.")
@@ -56,7 +57,7 @@ def explore_island(player_name: Player):
     original_position = (player_name.pos).copy()
     
     player_name.map_choice = main_map.plot[player_name.pos[0]][player_name.pos[1]]
-    print("INFO:\n" + player_name.map_choice.description, end="\n\n")
+    type_write("INFO:\n" + player_name.map_choice.description + "\n")
     player_name.pos = [int(player_name.map_choice.start_pos.split(",")[0]),
                 int(player_name.map_choice.start_pos.split(",")[1])]
     
@@ -73,12 +74,12 @@ def explore_island(player_name: Player):
                 int(player_name.map_choice.start_pos.split(",")[1])]:
                 player_name.map_choice = main_map
                 player_name.pos = original_position
-                print(f"You have exited the {main_map.plot[player_name.pos[0]][player_name.pos[1]]} successfully!")
+                type_write(f"You have exited the {main_map.plot[player_name.pos[0]][player_name.pos[1]]} successfully!")
                 break
             else:
-                print(f"You need to return to the island entrance first!\n")
+                type_write(f"You need to return to the island entrance first!\n")
         else:
-            print("That's not a valid choice!\n")
+            type_write("That's not a valid choice!\n")
 
 
 def main(player_name: Player):
@@ -87,7 +88,7 @@ def main(player_name: Player):
         menu_choice = input("What would you like to do?\n"
                             + "(move/view map/enter island/quit)\n")        
         if menu_choice == "quit":
-            print(f"\nGood bye, {player_name.name.upper()}...")
+            type_write(f"\nGood bye, {player_name.name.upper()}...")
             break
         
         clear()
@@ -98,4 +99,4 @@ def main(player_name: Player):
         elif menu_choice.startswith("enter"):
             explore_island(player_name)
         else:
-            print("You cannot do that!\n")
+            type_write("You cannot do that!\n")

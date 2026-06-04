@@ -1,5 +1,6 @@
 from modules.clear import clear
 from modules.plot import *
+from modules.type_write import *
 
 class Player:
     
@@ -26,13 +27,16 @@ class Player:
             elif move_choice == "stop":
                 break
             elif move_choice in ["up", "down", "left", "right"]:
-                print("You have reached the edge of the map.", end=" ")
+                type_write("You have reached the edge of the map.", newline=False)
+                '''
+                TODO make this line stay while showing the player where they are (Beacuse it deletes this line rn after telling player where they are)
+                '''
             else:
-                print("That's not a valid direction!", end=" ")
+                type_write("That's not a valid direction!", newline=False)
             clear()
             if self.map_choice.plot[self.pos[0]][self.pos[1]] != "":
-                print(f"You are at {self.map_choice.plot[self.pos[0]][self.pos[1]]}.\n")
+                type_write(f"You are at {self.map_choice.plot[self.pos[0]][self.pos[1]]}.\n")
             else:
-                print("There's nothing here.")
+                type_write("There's nothing here.")
 
         clear()

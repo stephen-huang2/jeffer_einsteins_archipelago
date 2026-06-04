@@ -1,6 +1,6 @@
 from modules.player import Player
 import tabulate
-
+from modules.type_write import *
 
 class Inventory:
     
@@ -12,7 +12,7 @@ class Inventory:
         return self.name
 
     def view_inventory(self):
-        print("INVENTORY: ")
+        type_write("INVENTORY: ")
         print(tabulate.tabulate(self.inventory, tablefmt="fancy_grid"))
 
 
