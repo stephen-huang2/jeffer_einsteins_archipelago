@@ -6,18 +6,18 @@ from modules.inventory import *
 from modules.type_write import type_write
 
 # Defining each island in the main map
-base = Island("Main Island (Lab)", "1x1", "0,0", "Your home.")
+base = Island("Main Island (Lab)", "1x1", "0,0", "The lab you escaped from.")
 forests = Island("Enchanted Woodlands", "1x3", "2,0",
                  "Largely uncharted. Explore at your own risk.")
 caves = Island("Jagged Caverns", "4x4", "3,0", "Litterred with corpses of miners.")
 farms = Island("Crop Meadows", "2x3", "2,0",
-               "Scattered with nourishment, from vegetables & grain to wild rabbits & chickens.")
+               "Scattered with nourishment, from vegetables & grain to all kind's of fruit and some pigs.")
 fire_world = Island ("Hellscape", "5x1", "0,4",
                      "None that have ventured are known to return.")
 water_world = Island("Aquatic Abyss", "2x1", "0,0",
-                     "Try to not get swallowed by the depths.")
-merchant = Island("Merchant's wares", "1x1", "0,0", "Barter for goods.")
-pantheon = Island("Pantheon", "1x1", "0,0", "Draw healing energy from higher powers.")
+                     "Try to not get swallowed by the depths of the Abyss.")
+prison = Island("Darkwood Prsion", "1x1", "0,0", "A prison filled with opportunities.")
+dock = Island("Einstein Dock's", "1x1", "0,0", "The dock that leads to freedom.")
 spiders = Island("Arachnid Web", "2x2",  "0,0", "Tangled in treacherous spider silk.")
 
 # defining main map
@@ -30,8 +30,8 @@ main_map.plot[0][2] = farms
 main_map.plot[1][0] = fire_world
 main_map.plot[1][1] = base
 main_map.plot[1][2] = water_world
-main_map.plot[2][0] = merchant
-main_map.plot[2][1] = pantheon
+main_map.plot[2][0] = prison
+main_map.plot[2][1] = dock
 main_map.plot[2][2] = spiders
 
 # asssigning caves coordinates to quests.
@@ -51,10 +51,29 @@ base.plot[0][0] = "Lab"
 # assigning farm coordinates to quests
 farms.plot[2][0] = "Farm Gates"
 farms.plot[2][1] = "Tool Garage"
-farms.plot[0][1] = " "
+farms.plot[0][1] = "Orchards"
 farms.plot[1][1] = "Farm Land"
 farms.plot[0][0] = "Pigsty"
-farms.plot[0][1] = " "
+farms.plot[1][0] = "Empty Land"
+
+water_world.plot[0][0] = "Enternce of Abyss"
+water_world.plot[0][1] = "The Kraken"
+
+fire_world.plot[0][0] = "Gates of Hell"
+fire_world.plot[0][2] = "Battlefield"
+fire_world.plot[0][4] = "Demon's Palace"
+
+forests.plot[0][0] = "Enchanted Forest"
+forests.plot[2][0] = "Dryad"
+
+dock.plot[0][0] = "Grand Boat House"
+
+prison.plot[0][0] = "Devil's Hostel"
+
+spiders.plot[0][0] = "Cave Entrence"
+spiders.plot[0][1] = "Cave Crawlers"
+spiders.plot[1][0] = "Web's"
+spiders.plot[1][1] = "Arachne"
 
 # Player starts at main island
 steve = Player("Steve", [int(main_map.start_pos.split(",")[0]),
