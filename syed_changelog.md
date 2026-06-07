@@ -9,3 +9,7 @@
 06/02/2026 - New inventory system implementation with potential child classes.
 
 06/03/2026 - Creating quests for player, implementing new text prompting system and some minor bugfixes.
+
+06/04/2026 - New inventory system created
+
+06/07/2026 - Adding the loot stashes into quest implementing interactions between loot stash and player
