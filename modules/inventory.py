@@ -12,7 +12,7 @@ class Inventory:
         return self.name
 
     def view_inventory(self):
-        type_write("INVENTORY: ")
+        type_write("ITEMS: ")
         print(tabulate.tabulate(self.inventory, tablefmt="fancy_grid"))
 
 
