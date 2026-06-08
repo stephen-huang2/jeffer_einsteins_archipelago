@@ -6,7 +6,7 @@ class Inventory:
     
     def __init__(self, name: str, inventory: int = 3):
         self.name = name
-        self.inventory = [["EMPTY"] for i in range(inventory)]
+        self.inventory = [[f"{i+1}. EMPTY"] for i in range(inventory)]
 
     def __str__(self):
         return self.name

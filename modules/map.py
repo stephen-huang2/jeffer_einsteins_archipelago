@@ -3,7 +3,7 @@ from modules.clear import clear
 from modules.plot import *
 from modules.player import Player
 from modules.inventory import *
-from modules.type_write import type_write
+from modules.type_write import *
 
 # Defining each island in the main map
 base = Island("Main Island (Lab)", "1x1", "0,0", "The lab you escaped from.")
@@ -107,7 +107,7 @@ def explore_island(player_name: Player):
     player_name.pos = [int(player_name.map_choice.start_pos.split(",")[0]),
                 int(player_name.map_choice.start_pos.split(",")[1])]
     
-    choices = "(move/view map/exit island)"
+    choices = f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}exit island{BOLD_END})"
     loot = False
     while True:
         menu_choice = type_write("What would you like to do?\n"
@@ -118,7 +118,11 @@ def explore_island(player_name: Player):
         elif menu_choice.startswith("view"):
             player_name.map_choice.view_plot()
         elif loot and menu_choice.startswith("search"):
-            player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]].view_inventory()
+            loot_stash = player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]
+            loot_stash.view_inventory()
+            item_choice = type_write("What would you to withdraw?\n"
+                                     + f"({', '.join([str(i+1) for i in range(len(loot_stash.inventory))])})", userin=True)
+
         elif menu_choice.startswith("exit"):
             if player_name.pos == [int(player_name.map_choice.start_pos.split(",")[0]),
                 int(player_name.map_choice.start_pos.split(",")[1])]:
@@ -133,17 +137,17 @@ def explore_island(player_name: Player):
 
         if type(player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]) == Inventory:
             type_write("You are at a loot stash.")
-            choices = "(move/view map/search/exit island)"
+            choices = f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}search{BOLD_END}/{BOLD_START}exit island{BOLD_END})"
             loot = True
         else:
-            choices = "(move/view map/exit island)"
+            choices = f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}exit island{BOLD_END})"
             loot = False
 
 
 def main():
 
     while True:
-        player_name = type_write("Who would you like your player to be?\n(Steve)", userin=True)
+        player_name = type_write(f"Who would you like your player to be?\n({BOLD_START}Steve{BOLD_END})", userin=True)
         if player_name.lower().startswith("steve"):
             player_name = steve
             break
@@ -157,7 +161,7 @@ def main():
 
     while True:
         menu_choice = type_write("What would you like to do?\n"
-                            + "(move/view map/enter island/quit)", userin=True)        
+                            + f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}enter island{BOLD_END}/{BOLD_START}quit{BOLD_END})", userin=True)        
         if menu_choice == "quit":
             type_write(f"\nGood bye, {player_name.name.upper()}...")
             break

@@ -1,6 +1,6 @@
 from modules.clear import clear
 from modules.plot import *
-from modules.type_write import type_write
+from modules.type_write import *
 
 class Player:
     
@@ -19,7 +19,7 @@ class Player:
             else:
                 type_write("There's nothing here.")
             move_choice = type_write("Where would you like to move?\n"
-                                + "(up/down/left/right/stop)", userin=True)
+                                + f"({BOLD_START}up{BOLD_END}/{BOLD_START}down{BOLD_END}/{BOLD_START}left{BOLD_END}/{BOLD_START}right{BOLD_END}/{BOLD_START}stop{BOLD_END})", userin=True)
             clear()
             if move_choice == "up" and self.pos[0] > 0:
                 self.pos[0] -= 1
