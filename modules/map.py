@@ -55,13 +55,16 @@ farms.plot[1][1] = Inventory("Farm Land")
 farms.plot[0][0] = Inventory("Pigsty")
 farms.plot[1][0] = "Empty Land"
 
+# assigning water world coordinates to quests
 water_world.plot[0][0] = "Enternce of Abyss"
 water_world.plot[0][1] = "The Kraken"
 
+# assigning fire world coordinates to quests
 fire_world.plot[0][0] = "Gates of Hell"
 fire_world.plot[0][2] = Inventory("Battlefield")
 fire_world.plot[0][4] = "Demon's Palace"
 
+# assigning forest coordinates to quests
 forests.plot[0][0] = "Enchanted Forest"
 forests.plot[2][0] = "Dryad"
 
@@ -91,6 +94,7 @@ def explore_island(player_name: Player):
                 int(player_name.map_choice.start_pos.split(",")[1])]
     
     choices = "(move/view map/exit island)"
+    loot = False
     while True:
         menu_choice = type_write("What would you like to do?\n"
                             + choices, userin=True)
@@ -99,6 +103,8 @@ def explore_island(player_name: Player):
             player_name.move()
         elif menu_choice.startswith("view"):
             player_name.map_choice.view_plot()
+        elif loot and menu_choice.startswith("search"):
+            player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]].view_inventory()
         elif menu_choice.startswith("exit"):
             if player_name.pos == [int(player_name.map_choice.start_pos.split(",")[0]),
                 int(player_name.map_choice.start_pos.split(",")[1])]:
@@ -112,10 +118,12 @@ def explore_island(player_name: Player):
             type_write("You cannot do that!\n")
 
         if type(player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]) == Inventory:
-            type_write("Looks like you stumbled across some stuff.")
+            type_write("You are at a loot stash.")
             choices = "(move/view map/search/exit island)"
+            loot = True
         else:
             choices = "(move/view map/exit island)"
+            loot = False
 
 
 def main():

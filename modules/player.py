@@ -38,10 +38,6 @@ class Player:
             clear()
             if move_choice in ["up", "down", "left", "right"]:
                 type_write("You are at the edge of the map! ", newline=False)
-                '''
-                TODO -> make this line stay while showing the player where they are
-                (Beacuse it deletes this line rn after telling player where they are)
-                '''
             else:
                 type_write("That's not a valid direction! ", newline=False)
             
