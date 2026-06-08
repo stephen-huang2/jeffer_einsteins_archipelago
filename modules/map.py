@@ -73,11 +73,11 @@ water_world.plot[0][1] = "The Kraken"
 
 # assigning fire world coordinates to quests
 fire_world.plot[0][4] = "Gates of Hell"
-fire_world.plot[0][2] = Inventory("Battlefield")
+fire_world.plot[0][2] = Inventory("Battlefield", inventory=1)
 fire_world.plot[0][0] = "Demon's Palace"
 
 # assigning loot stashes for fire world
-fire_world.plot[0][2].inventory[0][0] = "Eye of Hell"
+fire_world.plot[0][2].inventory[0][0] = "1. Eye of Hell"
 
 # assigning forest coordinates to quests
 forests.plot[2][0] = "Enchanted Forest"
