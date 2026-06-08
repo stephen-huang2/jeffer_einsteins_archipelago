@@ -46,8 +46,8 @@ caves.plot[0][1] = Inventory("Loot stash", inventory=1)
 caves.plot[0][2] = "Hanging Rope"
 
 # assigning loot stashes for caves
-caves.plot[1][2].inventory[0][0] = "🗝️  Key"
-caves.plot[0][1].inventory[0][0] = "🪢  Rope"
+caves.plot[1][2].inventory[0][0] = "1. Key"
+caves.plot[0][1].inventory[0][0] = "1. Rope"
 
 # assigning base coordinates
 base.plot[0][0] = "Lab"
@@ -61,10 +61,10 @@ farms.plot[0][0] = Inventory("Pigsty", inventory=1)
 farms.plot[1][0] = "Empty Land"
 
 # assigning loot stashes for farms
-farms.plot[0][0].inventory[0][0] = "Pork Meat"
-farms.plot[1][1].inventory[0][0] = "Bread"
-farms.plot[0][1].inventory[0][0] = "Apple"
-farms.plot[2][1].inventory[0][0] = "Shovel"
+farms.plot[0][0].inventory[0][0] = "1. Pork Meat"
+farms.plot[1][1].inventory[0][0] = "1. Bread"
+farms.plot[0][1].inventory[0][0] = "1. Apple"
+farms.plot[2][1].inventory[0][0] = "1. Shovel"
 
 # assigning water world coordinates to quests
 water_world.plot[0][0] = "Enternce of Abyss"
@@ -72,11 +72,11 @@ water_world.plot[0][1] = "The Kraken"
 
 # assigning fire world coordinates to quests
 fire_world.plot[0][4] = "Gates of Hell"
-fire_world.plot[0][2] = Inventory("Battlefield")
+fire_world.plot[0][2] = Inventory("Battlefield", inventory=1)
 fire_world.plot[0][0] = "Demon's Palace"
 
 # assigning loot stashes for fire world
-fire_world.plot[0][2].inventory[0][0] = "Eye of Hell"
+fire_world.plot[0][2].inventory[0][0] = "1. Eye of Hell"
 
 # assigning forest coordinates to quests
 forests.plot[2][0] = "Enchanted Forest"
