@@ -1,4 +1,3 @@
-from modules.player import Player
 import tabulate
 from modules.type_write import *
 
@@ -12,17 +11,5 @@ class Inventory:
         return self.name
 
     def view_inventory(self):
-        type_write("ITEMS: ")
+        type_write(f"{self.name}: ")
         print(tabulate.tabulate(self.inventory, tablefmt="fancy_grid"))
-
-
-class Jacket(Inventory):
-    def __init__(self, inventory, player_name: Player):
-        super().__init__(inventory)
-        self.player_name = player_name
-
-
-class Chest(Inventory):
-    def __init__(self, inventory, location):
-        super().__init__(inventory)
-        self.location = location

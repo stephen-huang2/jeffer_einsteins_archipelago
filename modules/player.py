@@ -1,13 +1,15 @@
 from modules.clear import clear
 from modules.plot import *
 from modules.type_write import *
+from modules.inventory import *
 
 class Player:
     
-    def __init__(self, name: str, pos: list, map_choice: Plot):
+    def __init__(self, name: str, pos: list, map_choice: Plot, jacket: Inventory):
         self.name = name
         self.pos = pos
         self.map_choice = map_choice
+        self.jacket = jacket
 
     def __str__(self):
         return self.name

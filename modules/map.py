@@ -16,7 +16,7 @@ fire_world = Island ("Hellscape", "5x1", "0,4",
                      "None that have ventured are known to return.")
 water_world = Island("Aquatic Abyss", "2x1", "0,0",
                      "Try to not get swallowed by the depths of the Abyss.")
-prison = Island("Darkwood Prsion", "1x1", "0,0", "A prison filled with opportunities.")
+prison = Island("Darkwood Prison", "1x1", "0,0", "A prison filled with opportunities.")
 dock = Island("Einstein Dock's", "1x1", "0,0", "The dock that leads to freedom.")
 spiders = Island("Arachnid Web", "2x2",  "0,0", "Tangled in treacherous spider silk.")
 
@@ -97,7 +97,7 @@ spiders.plot[1][1] = "Arachne"
 
 # Player starts at main island
 steve = Player("Steve", [int(main_map.start_pos.split(",")[0]),
-                        int(main_map.start_pos.split(",")[1])], main_map)
+                        int(main_map.start_pos.split(",")[1])], main_map, Inventory("Steve's Jacket", 5))
 
 
 def explore_island(player_name: Player):
@@ -108,7 +108,7 @@ def explore_island(player_name: Player):
     player_name.pos = [int(player_name.map_choice.start_pos.split(",")[0]),
                 int(player_name.map_choice.start_pos.split(",")[1])]
     
-    choices = f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}exit island{BOLD_END})"
+    choices = f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}inspect jacket{BOLD_END}/{BOLD_START}exit island{BOLD_END})"
     loot = False
     while True:
         menu_choice = type_write("What would you like to do?\n"
@@ -118,11 +118,33 @@ def explore_island(player_name: Player):
             player_name.move()
         elif menu_choice.startswith("view"):
             player_name.map_choice.view_plot()
+        elif menu_choice.startswith("inspect"):
+            player_name.jacket.view_inventory()
         elif loot and menu_choice.startswith("search"):
             loot_stash = player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]
             loot_stash.view_inventory()
-            item_choice = type_write("What would you to withdraw?\n"
+            item_choice = type_write("What would you like to withdraw?\n"
                                      + f"({', '.join([str(i+1) for i in range(len(loot_stash.inventory))])})", userin=True)
+            loot_stolen = False
+            if item_choice in [str(i+1) for i in range(len(loot_stash.inventory))]:
+                for i in range(len(player_name.jacket.inventory)):
+                    if player_name.jacket.inventory[i][0][-5:] == "EMPTY":
+                        if loot_stash.inventory[int(item_choice)-1][0].split(". ")[1] != "EMPTY" and \
+                            loot_stash.inventory[int(item_choice)-1][0].split(". ")[1] != "Pocket":
+                            player_name.jacket.inventory[i][0] = f"{i+1}. {loot_stash.inventory[int(item_choice)-1][0].split(". ")[1]}"
+                            type_write("Item successfully picked up!\n")
+                        elif loot_stash.inventory[int(item_choice)-1][0].split(". ")[1] == "Pocket":
+                            type_write("Pocket added to jacket.\n")
+                            player_name.jacket.inventory.append([f"{len(player_name.jacket.inventory)+1}. EMPTY"])
+                        else:
+                            type_write("There's nothing to pick up. \n")
+                        loot_stash.inventory[int(item_choice)-1][0] = f"{item_choice}. EMPTY"
+                        loot_stolen = True
+                        break
+                if not loot_stolen:
+                    type_write("It appears your pockets are full!\n")
+                        
+                    
 
         elif menu_choice.startswith("exit"):
             if player_name.pos == [int(player_name.map_choice.start_pos.split(",")[0]),
@@ -138,10 +160,10 @@ def explore_island(player_name: Player):
 
         if type(player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]) == Inventory:
             type_write("You are at a loot stash.")
-            choices = f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}search{BOLD_END}/{BOLD_START}exit island{BOLD_END})"
+            choices = f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}inspect jacket{BOLD_END}/{BOLD_START}search{BOLD_END}/{BOLD_START}exit island{BOLD_END})"
             loot = True
         else:
-            choices = f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}exit island{BOLD_END})"
+            choices = f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}inspect jacket{BOLD_END}/{BOLD_START}exit island{BOLD_END})"
             loot = False
 
 
@@ -149,7 +171,8 @@ def main():
 
     while True:
         player_name = type_write(f"Who would you like your player to be?\n({BOLD_START}Steve{BOLD_END})", userin=True)
-        if player_name.lower().startswith("steve"):
+        # if player_name.lower().startswith("steve"):
+        if True:
             player_name = steve
             break
         else:
@@ -158,13 +181,13 @@ def main():
 
     clear()
 
-    type_write("Welcome Steve~")
+    type_write(f"Hello {player_name.name.capitalize()}~")
 
     while True:
         menu_choice = type_write("What would you like to do?\n"
-                            + f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}enter island{BOLD_END}/{BOLD_START}quit{BOLD_END})", userin=True)        
+                            + f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}inspect jacket{BOLD_END}/{BOLD_START}enter island{BOLD_END}/{BOLD_START}quit{BOLD_END})", userin=True)        
         if menu_choice == "quit":
-            type_write(f"\nGood bye, {player_name.name.upper()}...")
+            type_write(f"\nGood bye, {player_name.name.capitalize()}...")
             break
         
         clear()
@@ -174,5 +197,7 @@ def main():
             player_name.move()
         elif menu_choice.startswith("enter"):
             explore_island(player_name)
+        elif menu_choice.startswith("inspect"):
+            player_name.jacket.view_inventory()
         else:
             type_write("You cannot do that!")
