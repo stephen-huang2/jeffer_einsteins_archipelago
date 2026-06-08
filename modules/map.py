@@ -41,8 +41,7 @@ TODO -> -player can only exit from hanging rope, if player tries before they hav
         -put "Rope" in loot stash
 '''
 caves.plot[0][0] = "Cliff"
-caves.plot[0][1] = "     "
-caves.plot[1][2] = "Dead Body"
+caves.plot[1][2] = Inventory("Dead Body")
 caves.plot[3][1] = Inventory("Loot stash")
 caves.plot[3][3] = "Hanging Rope"
 
@@ -50,26 +49,29 @@ base.plot[0][0] = "Lab"
 
 # assigning farm coordinates to quests
 farms.plot[2][0] = "Farm Gates"
-farms.plot[2][1] = "Tool Garage"
-farms.plot[0][1] = "Orchards"
-farms.plot[1][1] = "Farm Land"
-farms.plot[0][0] = "Pigsty"
+farms.plot[2][1] = Inventory("Tool shed")
+farms.plot[0][1] = Inventory("Orchards")
+farms.plot[1][1] = Inventory("Farm Land")
+farms.plot[0][0] = Inventory("Pigsty")
 farms.plot[1][0] = "Empty Land"
 
 water_world.plot[0][0] = "Enternce of Abyss"
 water_world.plot[0][1] = "The Kraken"
 
 fire_world.plot[0][0] = "Gates of Hell"
-fire_world.plot[0][2] = "Battlefield"
+fire_world.plot[0][2] = Inventory("Battlefield")
 fire_world.plot[0][4] = "Demon's Palace"
 
 forests.plot[0][0] = "Enchanted Forest"
 forests.plot[2][0] = "Dryad"
 
+# assigning dock coordinates to quests
 dock.plot[0][0] = "Grand Boat House"
 
+# assigning prison coordinates to quests
 prison.plot[0][0] = "Devil's Hostel"
 
+# assigning spider coordinates to quests
 spiders.plot[0][0] = "Cave Entrence"
 spiders.plot[0][1] = "Cave Crawlers"
 spiders.plot[1][0] = "Web's"
