@@ -41,13 +41,14 @@ TODO -> -player can only exit from hanging rope, if player tries before they hav
         -put "Rope" in loot stash
 '''
 caves.plot[2][0] = "Cliff"
-caves.plot[1][2] = Inventory("Dead Body", inventory=1)
-caves.plot[0][1] = Inventory("Loot stash", inventory=1)
+caves.plot[1][2] = Inventory("Dead Body", inventory=2)
+caves.plot[0][1] = Inventory("Lost goods", inventory=1)
 caves.plot[0][2] = "Hanging Rope"
 
 # assigning loot stashes for caves
-caves.plot[1][2].inventory[0][0] = "🗝️  Key"
-caves.plot[0][1].inventory[0][0] = "🪢  Rope"
+caves.plot[1][2].inventory[0][0] = "1. Key"
+caves.plot[1][2].inventory[1][0] = "2. Pocket"
+caves.plot[0][1].inventory[0][0] = "1. Rope"
 
 # assigning base coordinates
 base.plot[0][0] = "Lab"
@@ -58,10 +59,10 @@ farms.plot[2][1] = Inventory("Tool shed", inventory=1)
 farms.plot[0][1] = Inventory("Orchards", inventory=1)
 farms.plot[1][1] = Inventory("Farm Land", inventory=1)
 farms.plot[0][0] = Inventory("Pigsty", inventory=1)
-farms.plot[1][0] = "Empty Land"
+farms.plot[1][0] = "Empty Farm"
 
 # assigning loot stashes for farms
-farms.plot[0][0].inventory[0][0] = "Pork Meat"
+farms.plot[0][0].inventory[0][0] = "Pork"
 farms.plot[1][1].inventory[0][0] = "Bread"
 farms.plot[0][1].inventory[0][0] = "Apple"
 farms.plot[2][1].inventory[0][0] = "Shovel"
