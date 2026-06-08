@@ -9,7 +9,7 @@ from modules.type_write import type_write
 base = Island("Main Island (Lab)", "1x1", "0,0", "The lab you escaped from.")
 forests = Island("Enchanted Woodlands", "1x3", "2,0",
                  "Largely uncharted. Explore at your own risk.")
-caves = Island("Jagged Caverns", "4x4", "3,0", "Litterred with corpses of miners.")
+caves = Island("Jagged Caverns", "3x3", "2,0", "Litterred with corpses of miners.")
 farms = Island("Crop Meadows", "2x3", "2,0",
                "Scattered with nourishment, from vegetables & grain to all kind's of fruit and some pigs.")
 fire_world = Island ("Hellscape", "5x1", "0,4",
@@ -40,33 +40,47 @@ TODO -> -player can only exit from hanging rope, if player tries before they hav
         -make player solve riddle to get a key to open the loot stash
         -put "Rope" in loot stash
 '''
-caves.plot[0][0] = "Cliff"
-caves.plot[1][2] = Inventory("Dead Body")
-caves.plot[3][1] = Inventory("Loot stash")
-caves.plot[3][3] = "Hanging Rope"
+caves.plot[2][0] = "Cliff"
+caves.plot[1][2] = Inventory("Dead Body", inventory=1)
+caves.plot[0][1] = Inventory("Loot stash", inventory=1)
+caves.plot[0][2] = "Hanging Rope"
 
+# assigning loot stashes for caves
+caves.plot[1][2].inventory[0][0] = "🗝️  Key"
+caves.plot[0][1].inventory[0][0] = "🪢  Rope"
+
+# assigning base coordinates
 base.plot[0][0] = "Lab"
 
 # assigning farm coordinates to quests
 farms.plot[2][0] = "Farm Gates"
-farms.plot[2][1] = Inventory("Tool shed")
-farms.plot[0][1] = Inventory("Orchards")
-farms.plot[1][1] = Inventory("Farm Land")
-farms.plot[0][0] = Inventory("Pigsty")
+farms.plot[2][1] = Inventory("Tool shed", inventory=1)
+farms.plot[0][1] = Inventory("Orchards", inventory=1)
+farms.plot[1][1] = Inventory("Farm Land", inventory=1)
+farms.plot[0][0] = Inventory("Pigsty", inventory=1)
 farms.plot[1][0] = "Empty Land"
+
+# assigning loot stashes for farms
+farms.plot[0][0].inventory[0][0] = "Pork Meat"
+farms.plot[1][1].inventory[0][0] = "Bread"
+farms.plot[0][1].inventory[0][0] = "Apple"
+farms.plot[2][1].inventory[0][0] = "Shovel"
 
 # assigning water world coordinates to quests
 water_world.plot[0][0] = "Enternce of Abyss"
 water_world.plot[0][1] = "The Kraken"
 
 # assigning fire world coordinates to quests
-fire_world.plot[0][0] = "Gates of Hell"
+fire_world.plot[0][4] = "Gates of Hell"
 fire_world.plot[0][2] = Inventory("Battlefield")
-fire_world.plot[0][4] = "Demon's Palace"
+fire_world.plot[0][0] = "Demon's Palace"
+
+# assigning loot stashes for fire world
+fire_world.plot[0][2].inventory[0][0] = "Eye of Hell"
 
 # assigning forest coordinates to quests
-forests.plot[0][0] = "Enchanted Forest"
-forests.plot[2][0] = "Dryad"
+forests.plot[2][0] = "Enchanted Forest"
+forests.plot[0][0] = "Dryad"
 
 # assigning dock coordinates to quests
 dock.plot[0][0] = "Grand Boat House"
