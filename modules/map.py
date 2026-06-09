@@ -10,7 +10,7 @@ from modules.interactable_rooms import Room
 base = Island("Main Island (Lab)", "1x1", "0,0", "The lab you escaped from.")
 forests = Island("Enchanted Woodlands", "1x3", "2,0",
                  "Largely uncharted. Explore at your own risk.")
-caves = Island("Jagged Caverns", "3x3", "2,0", "Litterred with corpses of miners.")
+caves = Island("Jagged Caverns", "3x3", "2,0", "Litterred with corpses of miners.", "0,2")
 farms = Island("Crop Meadows", "2x3", "2,0",
                "Scattered with nourishment, from vegetables & grain to all kind's of fruit and some pigs.")
 fire_world = Island ("Hellscape", "5x1", "0,4",
@@ -25,15 +25,15 @@ spiders = Island("Arachnid Web", "2x2",  "0,0", "Tangled in treacherous spider s
 main_map = Plot("MAIN MAP", "3x3", "1,1")
 
 # assigning map coordinates to islands
-main_map.plot[0][0] = forests
+main_map.plot[0][0] = "LOCKED" # forests
 main_map.plot[0][1] = caves
-main_map.plot[0][2] = farms
-main_map.plot[1][0] = fire_world
+main_map.plot[0][2] = "LOCKED" # farms
+main_map.plot[1][0] = "LOCKED" # fire_world
 main_map.plot[1][1] = base
-main_map.plot[1][2] = water_world
-main_map.plot[2][0] = prison
-main_map.plot[2][1] = dock
-main_map.plot[2][2] = spiders
+main_map.plot[1][2] = "LOCKED" # water_world
+main_map.plot[2][0] = "LOCKED" # prison
+main_map.plot[2][1] = "LOCKED" # dock
+main_map.plot[2][2] = "LOCKED" # spiders
 
 # asssigning caves coordinates to quests.
 '''
@@ -104,6 +104,10 @@ steve = Player("Steve", [int(main_map.start_pos.split(",")[0]),
 def explore_island(player_name: Player):
     original_position = (player_name.pos).copy()
     
+    if type(main_map.plot[player_name.pos[0]][player_name.pos[1]]) == str:
+        type_write("You are not ready for this adventure yet...\n")
+        return
+
     player_name.map_choice = main_map.plot[player_name.pos[0]][player_name.pos[1]]
     type_write(f"INFO ({player_name.map_choice}):\n" + player_name.map_choice.description + "\n")
     player_name.pos = [int(player_name.map_choice.start_pos.split(",")[0]),
@@ -149,10 +153,18 @@ def explore_island(player_name: Player):
                 int(player_name.map_choice.start_pos.split(",")[1])]:
                 player_name.map_choice = main_map
                 player_name.pos = original_position
-                type_write(f"You have exited the {main_map.plot[player_name.pos[0]][player_name.pos[1]]} successfully!")
+                type_write(f"You have exited the {main_map.plot[player_name.pos[0]][player_name.pos[1]]} successfully!\n")
                 break
+
+            elif player_name.map_choice.end_pos != None and \
+            player_name.pos == [int(player_name.map_choice.end_pos.split(",")[0]),
+            int(player_name.map_choice.end_pos.split(",")[1])]:
+                    player_name.map_choice = main_map
+                    player_name.pos = original_position
+                    type_write(f"You have exited the {main_map.plot[player_name.pos[0]][player_name.pos[1]]} successfully!\n")
+                    break
             else:
-                type_write(f"You need to return to the island entrance first!\n")
+                type_write(f"You need to be at an entrance/exit first!\n")
         else:
             type_write("You cannot do that!\n")
 
@@ -172,8 +184,11 @@ def explore_island(player_name: Player):
                 if ask_key.lower().startswith("y"):
                     for item in player_name.jacket.inventory:
                         if item[0][-3:] == "Key":
-                            type_write("You've unlocked the room!")
+                            type_write("You've unlocked the room! You have gained access to a bigger map!")
                             key_room.unlocked = True
+                            key_room.key = False
+                            item[0] = item[0].split(". ")[0] + ". EMPTY"
+                            player_name.level_up()
                             break
                     if not key_room.unlocked:
                         type_write("You do not have a key!")
@@ -184,8 +199,7 @@ def main():
 
     while True:
         player_name = type_write(f"Who would you like your player to be?\n({BOLD_START}Steve{BOLD_END})", userin=True)
-        # if player_name.lower().startswith("steve"):
-        if True:
+        if player_name.lower().startswith("steve"):
             player_name = steve
             break
         else:
@@ -197,6 +211,10 @@ def main():
     type_write(f"Hello {player_name.name.capitalize()}~")
 
     while True:
+
+        if player_name.level >= 2:
+            main_map.plot[0][2] = farms
+
         menu_choice = type_write("What would you like to do?\n"
                             + f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}inspect jacket{BOLD_END}/{BOLD_START}enter island{BOLD_END}/{BOLD_START}quit{BOLD_END})", userin=True)        
         if menu_choice == "quit":

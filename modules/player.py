@@ -5,11 +5,12 @@ from modules.inventory import *
 
 class Player:
     
-    def __init__(self, name: str, pos: list, map_choice: Plot, jacket: Inventory):
+    def __init__(self, name: str, pos: list, map_choice: Plot, jacket: Inventory, level: int=1):
         self.name = name
         self.pos = pos
         self.map_choice = map_choice
         self.jacket = jacket
+        self.level = level
 
     def __str__(self):
         return self.name
@@ -42,6 +43,8 @@ class Player:
                 type_write("You are at the edge of the map! ", newline=False)
             else:
                 type_write("That's not a valid direction! ", newline=False)
-            
+        
+    def level_up(self):
+        self.level += 1
 
         # clear()
