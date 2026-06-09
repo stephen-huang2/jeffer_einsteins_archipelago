@@ -5,7 +5,7 @@ from modules.inventory import *
 
 class Player:
     
-    def __init__(self, name: str, pos: list, map_choice: Plot, jacket: Inventory, level: int=1):
+    def __init__(self, name: str, pos: list, map_choice: Plot, jacket: Inventory, level: int=0):
         self.name = name
         self.pos = pos
         self.map_choice = map_choice

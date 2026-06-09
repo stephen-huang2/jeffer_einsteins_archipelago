@@ -26,7 +26,7 @@ main_map = Plot("MAIN MAP", "3x3", "1,1")
 
 # assigning map coordinates to islands
 main_map.plot[0][0] = "LOCKED" # forests
-main_map.plot[0][1] = caves
+main_map.plot[0][1] = Room("LOCKED (go here)", True)
 main_map.plot[0][2] = "LOCKED" # farms
 main_map.plot[1][0] = "LOCKED" # fire_world
 main_map.plot[1][1] = base
@@ -42,17 +42,19 @@ TODO -> -player can only exit from hanging rope, if player tries before they hav
         -put "Rope" in loot stash
 '''
 caves.plot[2][0] = "Cliff"
-caves.plot[1][2] = Inventory("Dead Body", inventory=2)
+caves.plot[1][2] = Inventory("Dead body", inventory=2)
 caves.plot[0][1] = Inventory("Lost goods", inventory=1)
-caves.plot[0][2] = Room("Hanging Rope", True)
+caves.plot[0][2] = Room("Farm entrace", True)
+caves.plot[1][0] = Room("Mysterious Tunnel", True)
 
 # assigning loot stashes for caves
 caves.plot[1][2].inventory[0][0] = "1. Key"
 caves.plot[1][2].inventory[1][0] = "2. Pocket"
-caves.plot[0][1].inventory[0][0] = "1. Rope"
+caves.plot[0][1].inventory[0][0] = "1. Key"
 
 # assigning base coordinates
-base.plot[0][0] = "Lab"
+base.plot[0][0] = Inventory("Lab", 1)
+base.plot[0][0].inventory[0][0] = "1. Key"
 
 # assigning farm coordinates to quests
 farms.plot[2][0] = "Farm Gates"
@@ -179,20 +181,19 @@ def explore_island(player_name: Player):
         if type(player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]) == Room:
             key_room = player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]
             if key_room.key:
-                type_write("You need a key to proceed.")
-                ask_key = type_write(f"Use key?\n({BOLD_START}Y{BOLD_END}/{BOLD_START}N{BOLD_END})", userin=True)
+                type_write(f"You need a {key_room.key_type} to proceed.")
+                ask_key = type_write(f"Use {key_room.key_type}?\n({BOLD_START}Y{BOLD_END}/{BOLD_START}N{BOLD_END})", userin=True)
                 if ask_key.lower().startswith("y"):
                     for item in player_name.jacket.inventory:
-                        if item[0][-3:] == "Key":
-                            type_write("You've unlocked the room! You have gained access to a bigger map!")
+                        if item[0][-3:] == key_room.key_type:
+                            type_write("You've unlocked the room! You have gained access to a bigger map!\n")
                             key_room.unlocked = True
                             key_room.key = False
                             item[0] = item[0].split(". ")[0] + ". EMPTY"
                             player_name.level_up()
                             break
                     if not key_room.unlocked:
-                        type_write("You do not have a key!")
-                # elif ask_key.lower().startswith("n"):
+                        type_write("You do not have a key!\n ")
 
 
 def main():
@@ -212,8 +213,12 @@ def main():
 
     while True:
 
+        if player_name.level >= 1:
+            main_map.plot[0][1] = caves
         if player_name.level >= 2:
             main_map.plot[0][2] = farms
+        if player_name.level >= 3:
+            main_map.plot[0][0] = forests
 
         menu_choice = type_write("What would you like to do?\n"
                             + f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}inspect jacket{BOLD_END}/{BOLD_START}enter island{BOLD_END}/{BOLD_START}quit{BOLD_END})", userin=True)        
@@ -232,3 +237,20 @@ def main():
             player_name.jacket.view_inventory()
         else:
             type_write("You cannot do that!")
+
+        if type(player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]) == Room:
+            key_room = player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]
+            if key_room.key:
+                type_write(f"You need a {key_room.key_type} to proceed.")
+                ask_key = type_write(f"Use {key_room.key_type}?\n({BOLD_START}Y{BOLD_END}/{BOLD_START}N{BOLD_END})", userin=True)
+                if ask_key.lower().startswith("y"):
+                    for item in player_name.jacket.inventory:
+                        if item[0][-3:] == key_room.key_type:
+                            type_write("You've unlocked the room! You have gained access to a bigger map!\n")
+                            key_room.unlocked = True
+                            key_room.key = False
+                            item[0] = item[0].split(". ")[0] + ". EMPTY"
+                            player_name.level_up()
+                            break
+                    if not key_room.unlocked:
+                        type_write("You do not have a key!\n ")
