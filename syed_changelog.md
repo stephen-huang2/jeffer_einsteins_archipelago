@@ -13,3 +13,5 @@
 06/04/2026 - New inventory system created
 
 06/07/2026 - Adding the loot stashes into quest implementing interactions between loot stash and player
+
+06/08/2026 - Certain rooms are "unlockable" with keys now.

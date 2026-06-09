@@ -4,6 +4,7 @@ from modules.plot import *
 from modules.player import Player
 from modules.inventory import *
 from modules.type_write import *
+from modules.interactable_rooms import Room
 
 # Defining each island in the main map
 base = Island("Main Island (Lab)", "1x1", "0,0", "The lab you escaped from.")
@@ -43,7 +44,7 @@ TODO -> -player can only exit from hanging rope, if player tries before they hav
 caves.plot[2][0] = "Cliff"
 caves.plot[1][2] = Inventory("Dead Body", inventory=2)
 caves.plot[0][1] = Inventory("Lost goods", inventory=1)
-caves.plot[0][2] = "Hanging Rope"
+caves.plot[0][2] = Room("Hanging Rope", True)
 
 # assigning loot stashes for caves
 caves.plot[1][2].inventory[0][0] = "1. Key"
@@ -90,7 +91,7 @@ dock.plot[0][0] = "Grand Boat House"
 prison.plot[0][0] = "Devil's Hostel"
 
 # assigning spider coordinates to quests
-spiders.plot[0][0] = "Cave Entrence"
+spiders.plot[0][0] = "Cave Entrance"
 spiders.plot[0][1] = "Cave Crawlers"
 spiders.plot[1][0] = "Web's"
 spiders.plot[1][1] = "Arachne"
@@ -143,9 +144,6 @@ def explore_island(player_name: Player):
                         break
                 if not loot_stolen:
                     type_write("It appears your pockets are full!\n")
-                        
-                    
-
         elif menu_choice.startswith("exit"):
             if player_name.pos == [int(player_name.map_choice.start_pos.split(",")[0]),
                 int(player_name.map_choice.start_pos.split(",")[1])]:
@@ -165,6 +163,21 @@ def explore_island(player_name: Player):
         else:
             choices = f"({BOLD_START}move{BOLD_END}/{BOLD_START}view map{BOLD_END}/{BOLD_START}inspect jacket{BOLD_END}/{BOLD_START}exit island{BOLD_END})"
             loot = False
+
+        if type(player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]) == Room:
+            key_room = player_name.map_choice.plot[player_name.pos[0]][player_name.pos[1]]
+            if key_room.key:
+                type_write("You need a key to proceed.")
+                ask_key = type_write(f"Use key?\n({BOLD_START}Y{BOLD_END}/{BOLD_START}N{BOLD_END})", userin=True)
+                if ask_key.lower().startswith("y"):
+                    for item in player_name.jacket.inventory:
+                        if item[0][-3:] == "Key":
+                            type_write("You've unlocked the room!")
+                            key_room.unlocked = True
+                            break
+                    if not key_room.unlocked:
+                        type_write("You do not have a key!")
+                # elif ask_key.lower().startswith("n"):
 
 
 def main():
