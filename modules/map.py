@@ -36,20 +36,13 @@ main_map.plot[2][1] = "LOCKED" # dock
 main_map.plot[2][2] = "LOCKED" # spiders
 
 # asssigning caves coordinates to quests.
-'''
-TODO -> -player can only exit from hanging rope, if player tries before they have rope it tells them they cant go up
-        -make player solve riddle to get a key to open the loot stash
-        -put "Rope" in loot stash
-'''
 caves.plot[2][0] = "Cliff"
 caves.plot[1][2] = Inventory("Dead Body", inventory=2)
-caves.plot[0][1] = Inventory("Lost goods", inventory=1)
-caves.plot[0][2] = Room("Hanging Rope", True)
+caves.plot[0][2] = Room("Cave Exit", True)
 
 # assigning loot stashes for caves
 caves.plot[1][2].inventory[0][0] = "1. Key"
 caves.plot[1][2].inventory[1][0] = "2. Pocket"
-caves.plot[0][1].inventory[0][0] = "1. Rope"
 
 # assigning base coordinates
 base.plot[0][0] = "Lab"

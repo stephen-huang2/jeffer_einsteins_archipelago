@@ -6,5 +6,6 @@
 6/3/2026 - Create caves map & figure out how to use inventory system for making loot stashes for the player to pick up
 6/4/2026 - Testing & create maps for each island
 6/7/2026 - Finish maps for each island
-
+6/8/2026 - Created items for canverns
+6/9/2026 - Removed items and covered all the code with syed's
 
