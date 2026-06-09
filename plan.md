@@ -24,12 +24,3 @@ The user will start on main island, and move around obtaining items by solving c
 
 # V4
 - create further levels or story lines
-
-Task
-
-# Syed
-- Orgenize code
-
-# Stephen
-- Fill in all paper work
-- Create inventeoy system
