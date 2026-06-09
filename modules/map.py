@@ -53,7 +53,7 @@ farms.plot[2][1] = Inventory("Tool shed", inventory=1)
 farms.plot[0][1] = Inventory("Orchards", inventory=1)
 farms.plot[1][1] = Inventory("Farm Land", inventory=1)
 farms.plot[0][0] = Inventory("Pigsty", inventory=1)
-farms.plot[1][0] = "Empty Farm"
+farms.plot[1][0] = "Big Hole"
 
 # assigning loot stashes for farms
 farms.plot[0][0].inventory[0][0] = "Pork"
