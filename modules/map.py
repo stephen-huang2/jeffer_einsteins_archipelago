@@ -38,7 +38,7 @@ main_map.plot[2][2] = "LOCKED" # spiders
 # asssigning caves coordinates to quests.
 caves.plot[2][0] = "Cliff"
 caves.plot[1][2] = Inventory("Dead Body", inventory=2)
-caves.plot[0][2] = Room("Cave Exit", True)
+caves.plot[0][2] = Room("Map to the Meadows", True)
 
 # assigning loot stashes for caves
 caves.plot[1][2].inventory[0][0] = "1. Key"
