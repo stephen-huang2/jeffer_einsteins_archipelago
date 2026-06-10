@@ -39,7 +39,7 @@ main_map.plot[1][2] = "LOCKED" # water_world
 caves.plot[2][0] = "Cliff"
 caves.plot[1][2] = Inventory("Dead body", inventory=2)
 caves.plot[0][1] = Inventory("Lost goods", inventory=1)
-caves.plot[0][2] = Room("Hanging Rope", True)
+caves.plot[0][2] = Room("Hanging Rope", True, key_type="Rope")
 caves.plot[1][0] = Room("Mysterious Tunnel", True)
 
 # assigning loot stashes for caves
@@ -181,7 +181,7 @@ def explore_island(player_name: Player):
                 ask_key = type_write(f"Use {key_room.key_type}?\n({BOLD_START}Y{BOLD_END}/{BOLD_START}N{BOLD_END})", userin=True)
                 if ask_key.lower().startswith("y"):
                     for item in player_name.jacket.inventory:
-                        if item[0][-3:] == key_room.key_type:
+                        if item[0].split(". ")[1] == key_room.key_type:
                             type_write("You've unlocked the room! You have gained access to a bigger map!\n")
                             key_room.unlocked = True
                             key_room.key = False
@@ -189,7 +189,7 @@ def explore_island(player_name: Player):
                             player_name.level_up()
                             break
                     if not key_room.unlocked:
-                        type_write("You do not have a key!\n ")
+                        type_write(f"You do not have a {key_room.key_type}!\n ")
 
 
 def main():
