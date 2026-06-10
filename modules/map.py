@@ -22,7 +22,7 @@ dock = Island("Einstein Dock's", "1x1", "0,0", "The dock that leads to freedom."
 spiders = Island("Arachnid Web", "2x2",  "0,0", "Tangled in treacherous spider silk.")
 
 # defining main map
-main_map = Plot("MAIN MAP", "3x3", "1,1")
+main_map = Plot("MAIN MAP", "3x2", "1,1")
 
 # assigning map coordinates to islands
 main_map.plot[0][0] = "LOCKED" # forests
@@ -31,9 +31,9 @@ main_map.plot[0][2] = "LOCKED" # farms
 main_map.plot[1][0] = "LOCKED" # fire_world
 main_map.plot[1][1] = base
 main_map.plot[1][2] = "LOCKED" # water_world
-main_map.plot[2][0] = "LOCKED" # prison
-main_map.plot[2][1] = "LOCKED" # dock
-main_map.plot[2][2] = "LOCKED" # spiders
+# main_map.plot[2][0] = "LOCKED" # prison
+# main_map.plot[2][1] = "LOCKED" # dock
+# main_map.plot[2][2] = "LOCKED" # spiders
 
 # asssigning caves coordinates to quests.
 caves.plot[2][0] = "Cliff"
@@ -101,7 +101,8 @@ steve = Player("Steve", [int(main_map.start_pos.split(",")[0]),
 def explore_island(player_name: Player):
     original_position = (player_name.pos).copy()
     
-    if type(main_map.plot[player_name.pos[0]][player_name.pos[1]]) == str:
+    if type(main_map.plot[player_name.pos[0]][player_name.pos[1]]) == str or \
+    type(main_map.plot[player_name.pos[0]][player_name.pos[1]]) == Room:
         type_write("You are not ready for this adventure yet...\n")
         return
 
