@@ -1,5 +1,13 @@
 Name: Adventure Land
 
+# Game play plan
+
+The user will start on main island, and move around obtaining items by solving challenges and finish the tasks for all the islands and "seascape" the archipelago, advancing on more challenges to find his way home
+
+# Game
+- inventory
+- map
+
 # V1
 - make a inventory system to carrie items
 - polish the map.py and sort out the names and details of each island.
@@ -16,12 +24,3 @@ Name: Adventure Land
 
 # V4
 - create further levels or story lines
-
-Task
-
-# Syed
-- Orgenize code
-
-# Stephen
-- Fill in all paper work
-- Create inventeoy system
