@@ -39,13 +39,13 @@ main_map.plot[2][2] = "LOCKED" # spiders
 caves.plot[2][0] = "Cliff"
 caves.plot[1][2] = Inventory("Dead body", inventory=2)
 caves.plot[0][1] = Inventory("Lost goods", inventory=1)
-caves.plot[0][2] = Room("Farm entrace", True)
+caves.plot[0][2] = Room("Hanging Rope", True)
 caves.plot[1][0] = Room("Mysterious Tunnel", True)
 
 # assigning loot stashes for caves
 caves.plot[1][2].inventory[0][0] = "1. Key"
 caves.plot[1][2].inventory[1][0] = "2. Pocket"
-caves.plot[0][1].inventory[0][0] = "1. Key"
+caves.plot[0][1].inventory[0][0] = "1. Rope"
 
 # assigning base coordinates
 base.plot[0][0] = Inventory("Lab", 1)
