@@ -81,6 +81,7 @@ fire_world.plot[0][2].inventory[0][0] = "1. Eye of Hell"
 forests.plot[2][0] = "Enchanted Forest"
 forests.plot[0][0] = "Dryad"
 
+'''
 # assigning dock coordinates to quests
 dock.plot[0][0] = "Grand Boat House"
 
@@ -92,6 +93,7 @@ spiders.plot[0][0] = "Cave Entrance"
 spiders.plot[0][1] = "Cave Crawlers"
 spiders.plot[1][0] = "Web's"
 spiders.plot[1][1] = "Arachne"
+'''
 
 # Player starts at main island
 steve = Player("Steve", [int(main_map.start_pos.split(",")[0]),
