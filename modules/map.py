@@ -83,9 +83,10 @@ fire_world.plot[0][2].inventory[0][0] = "1. Eye of Hell"
 
 # assigning forest coordinates to quests
 forests.plot[2][0] = Inventory("Enchanted Forest", inventory=1)
-forests.plot[2][0].inventory[0][0] = "1. Magical Branch"
 forests.plot[0][0] = Dryad()
 
+# assigning loot stashes for water world
+forests.plot[2][0].inventory[0][0] = "1. Magical Branch"
 '''
 # assigning dock coordinates to quests
 dock.plot[0][0] = "Grand Boat House"
