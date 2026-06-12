@@ -8,4 +8,5 @@
 6/7/2026 - Finish maps for each island
 6/8/2026 - Created items for canverns
 6/9/2026 - Removed items and covered all the code with syed's
-
+6/10/2026 - Create all code for islands and make all riddles and challenges
+6/11/2026 - Pep 8 and orginizing
