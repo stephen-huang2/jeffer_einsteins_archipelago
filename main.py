@@ -7,21 +7,27 @@ from datetime import datetime
 import csv
 import os
 
-# Building the story
+
+# ---------------------------------------------------------------------------
+# Entry Point — Build the story and show the main menu
+# ---------------------------------------------------------------------------
+
+# Clear the terminal and greet the player
 clear()
 type_write("Welcome~")
 
-# Menu prompt for tutorial and runs log
+# Main menu loop — runs until the player chooses to play
 while True:
     menu_choice = type_write(
         f"What would you like to do?\n"
         f"({BOLD_START}tutorial{BOLD_END}"
         f"/{BOLD_START}runs{BOLD_END}/"
         f"{BOLD_START}play{BOLD_END})",
-        userin=True
+        userin=True,
     )
 
     if menu_choice.lower().startswith("tutorial"):
+        # Display the tutorial text from file, if it exists
         clear()
         try:
             with open("tutorial.txt", "r") as tutorial_file:
@@ -32,6 +38,7 @@ while True:
             type_write("Tutorial file not found.\n")
 
     elif menu_choice.lower().startswith("runs"):
+        # Display all previously logged runs from the CSV
         clear()
         if os.path.exists(RUNS_FILE):
             try:
@@ -50,12 +57,14 @@ while True:
         clear()
 
     elif menu_choice.lower().startswith("play"):
+        # Begin the game
         clear()
         break
 
     else:
+        # Unrecognised input — prompt again
         clear()
-        type_write("Invalid choice. Please enter 'tutorial', 'runs',"
-                   " or 'play'.\n")
+        type_write("Invalid choice. Please enter 'tutorial', 'runs', or 'play'.\n")
 
+# Hand off to the main game loop (defined in modules/map.py)
 main()

@@ -1,15 +1,18 @@
 class Room:
-    
-    def __init__(self, name:str, key:bool=False, unlocked:bool=False, key_type:str = "Key"):
-        self.name = name
-        self.key = key
-        self.unlocked = unlocked
-        self.key_type = key_type
-    
+    """Represents a room in the game world."""
+
+    def __init__(self, name: str, key: bool = False, unlocked: bool = False, key_type: str = "Key"):
+        self.name = name          # Display name of the room
+        self.key = key            # Whether the room requires a key
+        self.unlocked = unlocked  # Whether the room is currently unlocked
+        self.key_type = key_type  # The type of key required to unlock the room
+
     def __str__(self):
         return self.name
 
+
 class Dryad(Room):
+    """A room guarded by an ancient Dryad who poses a riddle."""
 
     RIDDLE = (
         "I drink the sun to paint the world in emerald, yet I have no mouth.\n"
@@ -18,27 +21,33 @@ class Dryad(Room):
         "What am I?"
     )
     ANSWERS = ["1. A mountain", "2. A tree", "3. A River"]
-    CORRECT = "2"
+    CORRECT = "2"  # Correct answer index: "A tree"
 
     def __init__(self):
         super().__init__("Dryad", key=True, key_type="Magical Branch")
-        self.riddle_solved = False
+        self.riddle_solved = False  # Tracks whether the riddle has been solved
 
     def attempt_riddle(self, type_write_fn, bold_start, bold_end):
+        """Present the Dryad's riddle and evaluate the player's answer."""
         type_write_fn(
             "\nThe ancient Dryad stirs, her bark-like skin cracking as she turns to face you...\n"
         )
         type_write_fn(f'"{self.RIDDLE}"\n')
+
+        # Display each answer option
         for ans in self.ANSWERS:
             type_write_fn(ans)
+
         answer = type_write_fn(
             f"\nChoose your answer ({bold_start}1{bold_end}/{bold_start}2{bold_end}/{bold_start}3{bold_end}):",
-            userin=True
+            userin=True,
         )
+
         if answer.strip() == self.CORRECT:
             type_write_fn(
                 '\n"Yes... a tree. You understand the living world. I shall grant you passage."\n'
             )
+            # Unlock the room and remove the key requirement
             self.riddle_solved = True
             self.key = False
             self.unlocked = True
@@ -51,6 +60,7 @@ class Dryad(Room):
 
 
 class Kraken(Room):
+    """A room guarded by the legendary Kraken who poses a riddle."""
 
     RIDDLE = (
         "I have a thousand arms but no hands to hold.\n"
@@ -61,23 +71,29 @@ class Kraken(Room):
         "What am I?"
     )
     ANSWERS = ["1. An Anchor", "2. A Coral Reef", "3. The Kraken"]
-    CORRECT = "3"
+    CORRECT = "3"  # Correct answer index: "The Kraken"
 
     def __init__(self):
+        # The Kraken's room starts unlocked — the challenge is the riddle itself
         super().__init__("The Kraken", key=False, unlocked=True)
-        self.riddle_solved = False
+        self.riddle_solved = False  # Tracks whether the riddle has been solved
 
     def attempt_riddle(self, type_write_fn, bold_start, bold_end):
+        """Present the Kraken's riddle and evaluate the player's answer."""
         type_write_fn(
             "\nThe ocean floor trembles. A colossal eye opens in the darkness below you...\n"
         )
         type_write_fn(f'"{self.RIDDLE}"\n')
+
+        # Display each answer option
         for ans in self.ANSWERS:
             type_write_fn(ans)
+
         answer = type_write_fn(
             f"\nChoose your answer ({bold_start}1{bold_end}/{bold_start}2{bold_end}/{bold_start}3{bold_end}):",
-            userin=True
+            userin=True,
         )
+
         if answer.strip() == self.CORRECT:
             type_write_fn(
                 '\n"...Correct. You are not entirely worthless. I shall allow you to pass."\n'
@@ -93,6 +109,7 @@ class Kraken(Room):
 
 
 class DemonsPalace(Room):
+    """A room inside the Demon's Palace, guarded by a cryptic demonic riddle."""
 
     RIDDLE = (
         "I was born in the breath of a whispered wish, yet I have grown into a titan that eclipses the sun.\n"
@@ -109,27 +126,32 @@ class DemonsPalace(Room):
     ANSWERS = [
         "1. Greed", "2. A Lie", "3. Guilt", "4. Sin",
         "5. Ambition", "6. Time", "7. Betrayal",
-        "8. The Truth", "9. A Shadow", "10. Memory"
+        "8. The Truth", "9. A Shadow", "10. Memory",
     ]
-    CORRECT = "4"
+    CORRECT = "4"  # Correct answer index: "Sin"
 
     def __init__(self):
         super().__init__("Demon's Palace", key=True, key_type="Eye of Hell")
-        self.riddle_solved = False
+        self.riddle_solved = False  # Tracks whether the riddle has been solved
 
     def attempt_riddle(self, type_write_fn, bold_start, bold_end):
+        """Present the demon's riddle and evaluate the player's answer."""
         type_write_fn(
             "\nThe gates of the Demon's Palace groan open. A voice like grinding stone fills the air...\n"
         )
         type_write_fn(f'"{self.RIDDLE}"\n')
+
+        # Display each answer option
         for ans in self.ANSWERS:
             type_write_fn(ans)
+
         answer = type_write_fn(
             f"\nChoose your answer ({bold_start}1{bold_end}/{bold_start}2{bold_end}/{bold_start}3{bold_end}"
             f"/{bold_start}4{bold_end}/{bold_start}5{bold_end}/{bold_start}6{bold_end}"
             f"/{bold_start}7{bold_end}/{bold_start}8{bold_end}/{bold_start}9{bold_end}/{bold_start}10{bold_end}):",
-            userin=True
+            userin=True,
         )
+
         if answer.strip() == self.CORRECT:
             type_write_fn(
                 '\n"...Sin. You are someone who truly understands us."\n'
@@ -137,6 +159,7 @@ class DemonsPalace(Room):
             type_write_fn(
                 '"You are the first mortal we have ever let walk back to the real world. Go."\n'
             )
+            # Unlock the room and remove the key requirement
             self.riddle_solved = True
             self.key = False
             self.unlocked = True

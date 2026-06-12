@@ -1,4 +1,8 @@
-from subprocess import run
 import os
+from subprocess import run
 
-clear = lambda: run('cls' if os.name == 'nt' else 'clear', shell=True)
+
+def clear():
+    """Clear the terminal screen."""
+    command = "cls" if os.name == "nt" else "clear"
+    run(command, shell=True)
