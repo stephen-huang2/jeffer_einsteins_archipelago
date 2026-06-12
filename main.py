@@ -13,8 +13,14 @@ type_write("Welcome~")
 
 # Menu prompt for tutorial and runs log
 while True:
-    menu_choice = type_write(f"What would you like to do?\n({BOLD_START}tutorial{BOLD_END}/{BOLD_START}runs{BOLD_END}/{BOLD_START}play{BOLD_END})", userin=True)
-    
+    menu_choice = type_write(
+        f"What would you like to do?\n"
+        f"({BOLD_START}tutorial{BOLD_END}"
+        f"/{BOLD_START}runs{BOLD_END}/"
+        f"{BOLD_START}play{BOLD_END})",
+        userin=True
+    )
+
     if menu_choice.lower().startswith("tutorial"):
         clear()
         try:
@@ -24,7 +30,7 @@ while True:
             clear()
         except FileNotFoundError:
             type_write("Tutorial file not found.\n")
-    
+
     elif menu_choice.lower().startswith("runs"):
         clear()
         if os.path.exists(RUNS_FILE):
@@ -42,13 +48,14 @@ while True:
             type_write("No runs log found yet.\n")
         type_write("\nPress Enter to continue...", userin=True)
         clear()
-    
+
     elif menu_choice.lower().startswith("play"):
         clear()
         break
-    
+
     else:
         clear()
-        type_write("Invalid choice. Please enter 'tutorial', 'runs', or 'play'.\n")
+        type_write("Invalid choice. Please enter 'tutorial', 'runs',"
+                   " or 'play'.\n")
 
 main()

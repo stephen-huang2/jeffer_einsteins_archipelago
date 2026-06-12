@@ -1,10 +1,11 @@
 import tabulate
 from modules.type_write import *
 
+
 class Plot:
     def __init__(self, name: str, plot: str, start_pos: list):
         self.name = name
-        self.plot = [["" for _ in range(int(plot.split("x")[0]))] \
+        self.plot = [["" for _ in range(int(plot.split("x")[0]))]
                      for _ in range(int(plot.split("x")[1]))]
         self.start_pos = start_pos
 
