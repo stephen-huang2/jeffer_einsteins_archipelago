@@ -13,9 +13,17 @@ class Player:
         self.jacket = jacket
         self.level = level
         self.hunger = Hunger()
+        self.failed_riddle_attempts = 0
 
     def __str__(self):
         return self.name
+
+    def add_failed_riddle_attempt(self):
+        self.failed_riddle_attempts += 1
+        return self.failed_riddle_attempts
+
+    def reset_failed_riddle_attempts(self):
+        self.failed_riddle_attempts = 0
 
     def move(self):
         while True:
@@ -59,5 +67,3 @@ class Player:
 
     def level_up(self):
         self.level += 1
-
-        # clear()

@@ -1,0 +1,5 @@
+Jeffer Einstein's Archipelago is a mystery and survival adventure where you play as Steve Howard, a captive who has escaped from the lab of the dangerous scientist Jeffer Einstein and must now navigate a chain of perilous islands to find freedom.
+As you explore the archipelago, you will search for hidden clues, keys, and resources while solving a variety of riddles that challenge your logic and observation skills.
+Progression depends on the lock and key system, where certain areas remain inaccessible until you discover the correct keys.
+Alongside this, you must manage a hunger system, as your character gradually becomes hungry over time, requiring you to find food scattered across the islands to continue your journey.
+Success relies on careful exploration, critical thinking, and resource management, as each solved riddle and unlocked path brings you closer to escape before Jeffer Einstein can catch you again.

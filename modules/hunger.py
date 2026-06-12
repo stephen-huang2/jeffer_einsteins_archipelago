@@ -1,5 +1,5 @@
 class Hunger:
-    def __init__(self, max_points=25):
+    def __init__(self, max_points=30):
         self.max_points = max_points
         self.current_points = max_points
     
