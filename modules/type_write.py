@@ -2,8 +2,8 @@ import sys
 import time
 
 
-BOLD_START = "\033[1m"  # ANSI escape code to begin bold text
-BOLD_END = "\033[0m"    # ANSI escape code to reset text formatting
+BOLD_START = "\033[1m"  # Code to begin bold text
+BOLD_END = "\033[0m"    # Code to reset text formatting
 
 
 def type_write(
