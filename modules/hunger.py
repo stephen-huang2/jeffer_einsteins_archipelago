@@ -43,7 +43,6 @@ class Hunger:
     def get_status(self):
         """Return current hunger status."""
         percentage = (self.current_points / self.max_points) * 100
-        return (
         return (f"Hunger: {self.current_points}/"
                 + f"{self.max_points} ({percentage:.0f}%)")
 
