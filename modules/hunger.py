@@ -47,6 +47,10 @@ class Hunger:
             f"Hunger: {self.current_points}/"
             + f"{self.max_points} ({percentage:.0f}%)"
         )
+=======
+        return (f"Hunger: {self.current_points}/"
+                + f"{self.max_points} ({percentage:.0f}%)")
+>>>>>>> Stashed changes
 
     def is_starving(self):
         """Check if hunger is fully depleted."""
