@@ -14,7 +14,7 @@
 | 8 | Picking up items puts them in your jacket | Pass |
 | 9 | Can't pick up items when inventory is full | Pass |
 | 10 | Eating food restores the right amount of hunger | Pass |
-| 11 | Hunger display shows the correct numbers | Fail |
+| 11 | Hunger display shows the correct numbers | Pass |
 | 12 | Dryad riddle works (needs Magical Branch first) | Pass |
 | 13 | Kraken riddle works | Pass |
 | 14 | Demon's Palace riddle works (needs Eye of Hell first) | Pass |
@@ -22,7 +22,7 @@
 | 16 | Using a key unlocks the room | Pass |
 | 17 | Game resets properly when you restart | Pass |
 | 18 | Runs get saved to the CSV file correctly | Pass |
-| 19 | Blank input / weird input doesn't break the game | Fail |
+| 19 | Blank input / weird input doesn't break the game | Pass |
 | 20 | Typing a number out of range gives feedback | Fail |
 
 ---
